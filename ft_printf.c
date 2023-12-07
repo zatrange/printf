@@ -6,20 +6,17 @@
 /*   By: zgtaib <zgtaib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:57:34 by zgtaib            #+#    #+#             */
-/*   Updated: 2023/12/06 18:56:13 by zgtaib           ###   ########.fr       */
+/*   Updated: 2023/12/07 20:22:20 by zgtaib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_printf.h"
+
 static int formatsp(const char format, va_list arg)
 {
-	int	x;
 	int char_count;
-	int i;
-
-	x = 0;
-	i = 0;
+	
 	char_count = 0;
 	if (format == 's')
 		char_count += ft_printstr(va_arg(arg, char*));
@@ -33,6 +30,8 @@ static int formatsp(const char format, va_list arg)
 		char_count += ft_printunsigned(va_arg(arg, unsigned int));
 	else if(format == 'x' || format == 'X')
 		char_count += ft_printhexa(va_arg(arg, unsigned int), format);
+	else if(format == 'p')
+		char_count += ft_printptr(va_arg(arg, void *)); 
 	return (char_count);
 	
 }
@@ -45,14 +44,16 @@ int ft_printf(const char *format, ...)
 	va_list arg;
 	va_start(arg, format);
 	
-	if (write(1, "", 0) == -1)
-		return (-1);
 	x = 0;
 	char_count = 0;
 	while (format[x] != '\0')
 	{
+		if (write(1, "", 0) == -1)
+			return -1;
 		if (format[x] == '%')
 		{
+			if (format[x + 1] == '\0')
+				break;
 			char_count += formatsp(format[x + 1], arg);
 			x++;
 		}
@@ -64,15 +65,3 @@ int ft_printf(const char *format, ...)
 	va_end(arg);
 	return (char_count);
 }
-// int main()
-// {
-// int d = ft_printf("%X\n", -15);
-// int f = printf("%X\n", -15);
-// ft_printf("d %d\n", d);
-// ft_printf("f %d\n", f);
-// printf("d %x\n", d);
-// printf("f %x\n", f);
-
-
-	
-// }
