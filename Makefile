@@ -6,15 +6,14 @@
 #    By: zgtaib <zgtaib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 17:30:25 by zgtaib            #+#    #+#              #
-#    Updated: 2023/12/07 18:17:01 by zgtaib           ###   ########.fr        #
+#    Updated: 2023/12/08 11:26:52 by zgtaib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = ft_itoa.c \
-		ft_printf.c \
+SRC = ft_printf.c \
 		ft_printnbr.c \
 		ft_printchar.c \
 		ft_printunsigned.c \
@@ -38,5 +37,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: clean
 

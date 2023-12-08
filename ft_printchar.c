@@ -6,14 +6,13 @@
 /*   By: zgtaib <zgtaib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:56:28 by zgtaib            #+#    #+#             */
-/*   Updated: 2023/12/07 16:01:48 by zgtaib           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:50:11 by zgtaib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
-int ft_printchar(char c)
+int	ft_printchar(char c)
 {
 	write(1, &c, 1);
 	return (1);

@@ -1,18 +1,16 @@
 
 #include "ft_printf.h"
+#include <limits.h>
 
 int main()
 {
-	// int a = 5;
-	// int *ptr = &a;
+    // Test the error-checking mechanism
+    if (ft_printf("-1", 42))
+    {
+        // Handle the error as needed
+        fprintf(stderr, "Error in ft_printf\n");
+        return 1;
+    }
 
-	printf(" %d" ,ft_printf("jkhjkh"));
-	printf("\n");
-	printf(" %d", printf("jkhjkh"));
-
-	// ft_printf("a = %d\n", a);
-	// printf("a = %d \n", a);
-	// ft_printf("b = %d\n", b);
-	// printf("b = %d \n", b);
-
+    return 0;
 }

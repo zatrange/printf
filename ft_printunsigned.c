@@ -6,54 +6,32 @@
 /*   By: zgtaib <zgtaib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:04:42 by zgtaib            #+#    #+#             */
-/*   Updated: 2023/12/07 16:02:27 by zgtaib           ###   ########.fr       */
+/*   Updated: 2023/12/08 17:02:20 by zgtaib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
-static int count(unsigned int nb)
-{	
-	int nmcount;
-
-	nmcount = 0;
-	if(nb == 0)
-		return (1);
-	
-	while (nb > 0)
-	{
-		nb = nb / 10;
-		nmcount++;
-	}
-	return (nmcount);
-}
-static char *unitoa(unsigned int nb)
+static int	ft_putunsigned(unsigned int nb)
 {
-	int len;
-	char *s;
+	int		count;
+	char	nm;
 
-	len = count(nb);
-	s = (char *)malloc((len + 1) * sizeof(char));
-	s[len] = '\0';
-	if(nb == 0)
-		s[0] = '0';
-	while (nb != 0)
+	count = 0;
+	if (nb > 9)
 	{
-		s[len - 1] = (nb % 10) + 48;
-		nb = nb / 10;
-		len--; 
+		count += ft_putunsigned(nb / 10);
+		count += ft_putunsigned(nb % 10);
 	}
-	return(s);
+	if (nb >= 0 && nb <= 9)
+	{
+		nm = nb + 48;
+		count += write (1, &nm, 1);
+	}
+	return (count);
 }
 
 int	ft_printunsigned(unsigned int nb)
 {
-	int len;
-	char *str;
-
-	str = unitoa(nb);
-	len = ft_printstr(str);
-	free (str);
-	return (len);
+	return (ft_putunsigned(nb));
 }
