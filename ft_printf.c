@@ -6,7 +6,7 @@
 /*   By: zgtaib <zgtaib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:57:34 by zgtaib            #+#    #+#             */
-/*   Updated: 2023/12/08 16:49:46 by zgtaib           ###   ########.fr       */
+/*   Updated: 2023/12/09 12:58:18 by zgtaib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_printf(const char *format, ...)
 	char_count = 0;
 	while (format[x] != '\0')
 	{
-		if (write(1, "", 0) == -1)
+		if (write(1, "", 0) < 0)
 			return (-1);
 		if (format[x] == '%')
 		{
